@@ -1,0 +1,36 @@
+// after clicking on the link it was opening remove duplicate from the given array so i searched for the problem called Set Matrix Zeros and here's the solution
+
+import java.util.ArrayList;
+
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        int r = 0, c = 0;
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j] == 0) {
+                    list.add(i);
+                    list.add(j);
+                }
+            }
+        }
+        for (int i = 0; i < list.size(); i += 2) {
+            r = list.get(i);
+            c = list.get(i + 1);
+            setRowZero(matrix, r);
+            setColZero(matrix, c);
+        }
+    }
+
+    static void setRowZero(int[][] matrix, int r) {
+        for (int j = 0; j < matrix[0].length; j++) {
+            matrix[r][j] = 0;
+        }
+    }
+
+    static void setColZero(int[][] matrix, int c) {
+        for (int i = 0; i < matrix.length; i++) {
+            matrix[i][c] = 0;
+        }
+    }
+}
